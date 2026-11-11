@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PDF Z Scanner - Files</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#c00003",
+            "on-primary-container": "#fffbff",
+            "on-secondary-fixed-variant": "#8d160d",
+            "secondary": "#af2f22",
+            "primary-fixed": "#ffdad5",
+            "inverse-primary": "#ffb4a8",
+            "tertiary-container": "#0d70e9",
+            "error": "#ba1a1a",
+            "surface-container": "#ffe9e6",
+            "on-primary-fixed": "#410000",
+            "on-tertiary-fixed-variant": "#004494",
+            "on-tertiary": "#ffffff",
+            "outline-variant": "#e8bcb6",
+            "inverse-surface": "#412b28",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-secondary-fixed": "#410000",
+            "on-primary-fixed-variant": "#930002",
+            "surface-container-highest": "#ffdad5",
+            "primary": "#bc0003",
+            "background": "#fff8f7",
+            "secondary-container": "#fe6855",
+            "surface": "#fff8f7",
+            "primary-container": "#e71610",
+            "surface-dim": "#f6d2cd",
+            "inverse-on-surface": "#ffedea",
+            "on-secondary-container": "#690001",
+            "surface-bright": "#fff8f7",
+            "on-error-container": "#93000a",
+            "on-surface": "#2a1614",
+            "on-tertiary-fixed": "#001a41",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#ffdad5",
+            "on-surface-variant": "#5e3f3a",
+            "on-secondary": "#ffffff",
+            "tertiary": "#0058bc",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#ffdad5",
+            "tertiary-fixed": "#d8e2ff",
+            "outline": "#936e69",
+            "tertiary-fixed-dim": "#adc6ff",
+            "on-background": "#2a1614",
+            "on-tertiary-container": "#fefcff",
+            "surface-container-high": "#ffe2de",
+            "on-error": "#ffffff",
+            "surface-container-low": "#fff0ee",
+            "primary-fixed-dim": "#ffb4a8",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "sans": ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex justify-center min-h-screen" style="background-color: rgb(248, 249, 250);">
+<!-- Android Smartphone Device Canvas -->
+<div class="w-full max-w-md min-h-screen bg-surface flex flex-col justify-between shadow-2xl relative overflow-hidden border-x border-outline-variant/30" style="background-color: rgb(248, 249, 250); border-color: rgb(233, 236, 239);">
+<!-- Top System Bar & M3 App Bar -->
+<header class="sticky top-0 z-30 bg-surface/95 backdrop-blur-md transition-colors" style="background-color: rgba(248, 249, 250, 0.95);">
+<!-- Android Status Bar Placeholder -->
+<div class="flex items-center justify-between px-6 pt-3 pb-1 text-xs font-semibold text-on-surface-variant">
+<span class="">9:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+</div>
+</div>
+<!-- Jetpack Compose Material 3 Small TopAppBar -->
+<div class="flex items-center justify-between px-5 py-3 h-16">
+<h1 class="text-[22px] font-bold text-on-surface tracking-tight">Files</h1>
+<div class="flex items-center gap-1">
+<!-- Search Button -->
+<button aria-label="Search files" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+<!-- Sort / Filter Button -->
+<button aria-label="Account" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-2xl">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Main Body Content: LazyColumn structure -->
+<main class="flex-1 overflow-y-auto px-4 py-2 space-y-6 pb-8">
+<!-- Section 1: My storage -->
+<section aria-labelledby="section-my-storage">
+<h2 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant px-3 mb-2.5" id="section-my-storage">
+          My storage
+        </h2>
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<!-- Item 1: Downloads -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl">folder</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Downloads</p>
+<p class="text-xs text-on-surface-variant">12 files</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+<!-- Divider -->
+<div class="h-[1px] bg-outline-variant/30 ml-[68px] mr-4"></div>
+<!-- Item 2: Processed files -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl">drive_file_move</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate group-hover:text-primary transition-colors">Processed files</p>
+<p class="text-xs text-on-surface-variant">5 files</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Section 2: Cloud storage -->
+<section aria-labelledby="section-cloud-storage">
+<h2 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant px-3 mb-2.5" id="section-cloud-storage"><span class="flex items-center gap-1.5"><span class="">Cloud storage</span><span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-[#fff3cd] text-[#996500] border border-[#ffe69c] tracking-normal normal-case"><span class="material-symbols-outlined text-[12px] leading-none">crown</span><span class="">PRO</span></span></span></h2>
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/30 overflow-hidden divide-y divide-outline-variant/30">
+<!-- Cloud Item: Google Drive -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container-low flex items-center justify-center shrink-0 shadow-inner">
+<!-- Google Drive colored icon representation -->
+<svg class="size-6" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+<path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"></path>
+<path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"></path>
+<path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.5l5.85 10.15z" fill="#ea4335"></path>
+<path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"></path>
+<path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"></path>
+<path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"></path>
+</svg>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate">Google Drive</p>
+<p class="text-xs text-on-surface-variant">Not linked</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+<!-- Cloud Item: Dropbox -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container-low flex items-center justify-center shrink-0">
+<!-- Dropbox SVG Icon -->
+<svg class="size-6 text-[#0061FE]" fill="currentColor" viewBox="0 0 24 24">
+<path d="M6 2.5 0 6.64l6 4.14 6-4.14L6 2.5zm12 0-6 4.14 6 4.14 6-4.14L18 2.5zM0 14.93l6 4.14 6-4.14-6-4.14-6 4.14zm18-4.14-6 4.14 6 4.14 6-4.14-6-4.14zM6.01 20.44l5.99-4.14 5.99 4.14-5.99 4.13-5.99-4.13z"></path>
+</svg>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate">Dropbox</p>
+<p class="text-xs text-on-surface-variant">Not linked</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+<!-- Cloud Item: OneDrive -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container-low flex items-center justify-center shrink-0">
+<!-- Microsoft OneDrive SVG Icon -->
+<svg class="size-6" fill="none" viewBox="0 0 24 24">
+<path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#0078D4"></path>
+</svg>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate">OneDrive</p>
+<p class="text-xs text-on-surface-variant">Not linked</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+<!-- Cloud Item: SharePoint -->
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-surface-container-low transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-surface-container-low flex items-center justify-center shrink-0">
+<!-- SharePoint SVG representation -->
+<svg class="size-6" fill="none" viewBox="0 0 24 24">
+<circle cx="15.5" cy="8.5" fill="#008272" fill-opacity="0.8" r="4.5"></circle>
+<circle cx="9.5" cy="13.5" fill="#038387" r="6"></circle>
+<circle cx="14" cy="16" fill="#004E8C" fill-opacity="0.7" r="4"></circle>
+</svg>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate">SharePoint</p>
+<p class="text-xs text-on-surface-variant">Not linked</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Delete -->
+<section aria-labelledby="section-delete">
+<h2 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant px-3 mb-2.5" id="section-delete">
+          Delete
+        </h2>
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="flex items-center justify-between px-4 py-3.5 hover:bg-error-container/20 transition-colors cursor-pointer group" role="button" tabindex="0">
+<div class="flex items-center gap-3.5 min-w-0">
+<div class="size-11 rounded-xl bg-error-container/60 flex items-center justify-center shrink-0 text-error">
+<span class="material-symbols-outlined text-2xl">delete_outline</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-semibold text-on-surface truncate group-hover:text-error transition-colors">Bin</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">0</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/70 text-xl shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared M3 Component Anchor) -->
+
+</div>
+
+
+</body></html>

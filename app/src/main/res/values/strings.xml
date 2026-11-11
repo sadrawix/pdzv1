@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PDF Z Scanner</string>
+    <string name="status_free_plan">Free Plan</string>
+    <string name="status_premium_plan">Premium Plan</string>
+    <string name="toggle_plan">Switch Plan (Test Mode)</string>
+    <string name="import_pdf">Import PDF</string>
+    <string name="create_sample_pdf">Generate Sample PDF</string>
+    <string name="tab_all">Recent</string>
+    <string name="tab_downloads">Downloads</string>
+    <string name="tab_opened">Opened</string>
+</resources>

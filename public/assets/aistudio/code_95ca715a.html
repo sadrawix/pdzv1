@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Jetpack Compose PDF Drawing Inspector</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#fff8f7",
+            "on-error": "#ffffff",
+            "surface-container-low": "#fff0ee",
+            "primary-container": "#e71610",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#fffbff",
+            "tertiary-fixed": "#d8e2ff",
+            "surface-variant": "#ffdad5",
+            "primary-fixed-dim": "#ffb4a8",
+            "on-surface-variant": "#5e3f3a",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#fff8f7",
+            "secondary": "#af2f22",
+            "on-error-container": "#93000a",
+            "surface": "#fff8f7",
+            "surface-container": "#ffe9e6",
+            "on-tertiary-container": "#fefcff",
+            "tertiary-container": "#0d70e9",
+            "on-primary-fixed": "#410000",
+            "on-background": "#2a1614",
+            "on-tertiary-fixed": "#001a41",
+            "surface-tint": "#c00003",
+            "on-tertiary-fixed-variant": "#004494",
+            "surface-dim": "#f6d2cd",
+            "surface-container-high": "#ffe2de",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#936e69",
+            "on-surface": "#2a1614",
+            "primary-fixed": "#ffdad5",
+            "outline-variant": "#e8bcb6",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#410000",
+            "inverse-surface": "#412b28",
+            "inverse-on-surface": "#ffedea",
+            "tertiary": "#0058bc",
+            "on-secondary-container": "#690001",
+            "on-primary-fixed-variant": "#930002",
+            "tertiary-fixed-dim": "#adc6ff",
+            "inverse-primary": "#ffb4a8",
+            "secondary-fixed": "#ffdad5",
+            "primary": "#bc0003",
+            "surface-container-highest": "#ffdad5",
+            "on-secondary-fixed-variant": "#8d160d",
+            "error": "#ba1a1a",
+            "secondary-container": "#fe6855"
+          },
+          "fontFamily": {
+            "title-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "title-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .checkerboard-pattern {
+      background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), 
+                        linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #cbd5e1 75%), 
+                        linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
+      background-size: 8px 8px;
+      background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      background: transparent;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 9999px;
+      background: #ffdad5;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #e71610;
+      margin-top: -7px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low min-h-screen flex items-center justify-center p-0 sm:p-6 font-body-md text-on-surface">
+<!-- Mobile Device Simulation Frame -->
+<div class="w-full max-w-[420px] h-[915px] max-h-screen bg-surface-container-lowest shadow-2xl rounded-none sm:rounded-3xl flex flex-col relative overflow-hidden border border-outline-variant">
+<!-- 1. Android Top Status Bar -->
+<header class="w-full bg-surface-container-lowest px-4 pt-3 pb-2 flex justify-between items-center text-xs font-semibold select-none z-30">
+<span class="text-on-surface tracking-tight text-[13px] font-medium pl-1">15:20</span>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px]">network_cell</span>
+<span class="material-symbols-outlined text-[15px]">wifi</span>
+<div class="flex items-center gap-1 ml-0.5">
+<span class="text-[11px] font-semibold text-on-surface">88%</span>
+<span class="material-symbols-outlined text-[17px] -rotate-90">battery_full</span>
+</div>
+</div>
+</header>
+<!-- 2. Top Annotation Toolbar -->
+<nav class="w-full bg-surface-container-lowest px-3 py-2 border-b border-surface-dim/40 shadow-sm flex items-center justify-between z-20">
+<!-- Left Tool Group -->
+<div class="flex items-center space-x-2">
+<!-- Text Highlight Tool -->
+<button class="relative w-9 h-9 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors shadow-sm" title="Highlight Tool">
+<span class="font-bold text-base font-title-md leading-none">T</span>
+<span class="absolute bottom-1 right-1 text-[8px] leading-none pointer-events-none">▼</span>
+</button>
+<!-- Freehand Drawing Tool (ACTIVE) -->
+<button class="relative w-9 h-9 rounded-lg bg-[#2E9B68] flex items-center justify-center text-on-primary shadow-sm hover:brightness-105 transition-all" title="Drawing Tool Active">
+<!-- Fountain Pen Nib with Stroke Icon -->
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M7 14c1.66 0 3-1.34 3-3V3h-2v8c0 .55-.45 1-1 1s-1-.45-1-1V3H4v8c0 1.66 1.34 3 3 3zm13.71-8.71l-1.42-1.42a.996.996 0 0 0-1.41 0L14.7 7.05l2.83 2.83 3.18-3.17c.39-.39.39-1.02 0-1.42zM13.29 8.46L4 17.75V21h3.25l9.29-9.29-3.25-3.25z"></path>
+</svg>
+<span class="absolute bottom-1 right-1 text-[8px] text-white leading-none pointer-events-none">▼</span>
+</button>
+</div>
+<!-- Right Action Tools -->
+<div class="flex items-center space-x-2.5">
+<!-- Active Color Indicator -->
+<div class="w-7 h-7 rounded-full p-[2px] border border-on-surface flex items-center justify-center cursor-pointer transition-transform hover:scale-105" id="topColorIndicatorOuter" title="Active Palette Color">
+<div class="w-full h-full rounded-full bg-[#1E88E5]" id="topColorIndicatorInner"></div>
+</div>
+<!-- Undo / Redo Combined -->
+<div class="relative flex flex-col items-center justify-center px-1.5 py-0.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface">undo</span>
+<span class="material-symbols-outlined text-[13px] text-outline ml-[-4px]">redo</span>
+</div>
+<span class="text-[7px] text-on-surface-variant absolute -bottom-1 right-0.5 leading-none">▼</span>
+</div>
+<!-- Close / Clear Button -->
+<button class="w-7 h-7 rounded-full border border-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors" title="Close Toolbar">
+<span class="material-symbols-outlined text-[16px] text-on-surface font-semibold">close</span>
+</button>
+<!-- Drag handle / Overflow (3x2 dots) -->
+<button class="p-1 rounded text-outline hover:text-on-surface transition-colors flex items-center justify-center" title="More options">
+<svg class="w-4 h-5 fill-current" viewBox="0 0 16 24">
+<circle cx="4" cy="5" r="1.8"></circle>
+<circle cx="12" cy="5" r="1.8"></circle>
+<circle cx="4" cy="12" r="1.8"></circle>
+<circle cx="12" cy="12" r="1.8"></circle>
+<circle cx="4" cy="19" r="1.8"></circle>
+<circle cx="12" cy="19" r="1.8"></circle>
+</svg>
+</button>
+</div>
+</nav>
+<!-- 3. Middle PDF Document Preview Area -->
+<main class="flex-1 bg-[#F1F3F5] overflow-y-auto px-4 py-4 relative flex flex-col items-center">
+<!-- White Virtual Page Canvas -->
+<div class="w-full bg-surface-container-lowest shadow-md rounded border border-outline-variant p-5 pb-8 relative select-none">
+<!-- Live Drawn Annotation Overlay on the page -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
+<path d="M 30 180 Q 90 140 180 190 T 320 160" fill="none" id="pageAnnotationCurve" stroke="#1E88E5" stroke-linecap="round" stroke-opacity="1.00" stroke-width="5"></path>
+</svg>
+<!-- Document Content -->
+<div class="text-center pt-2">
+<h1 class="text-lg font-bold tracking-wider text-on-surface font-title-lg uppercase">FRACTAL TRADING</h1>
+<p class="text-[10px] text-on-surface-variant mt-1 max-w-[280px] mx-auto leading-tight font-medium">
+            Analyzing Financial Markets using Fractal Geometry and the Golden Ratio
+          </p>
+<div class="w-16 h-[1.5px] bg-primary mx-auto my-2.5"></div>
+<p class="text-[9px] italic text-outline font-serif">
+            Soul Esprit – Servant of the Lord Jesus Christ
+          </p>
+</div>
+<!-- Planetary Orbit Illustration Figure -->
+<div class="mt-4 border border-outline-variant/60 rounded bg-surface-container-low/40 p-3 flex flex-col items-center relative overflow-hidden">
+<div class="relative w-44 h-32 flex items-center justify-center">
+<!-- Elliptical orbits -->
+<div class="absolute inset-2 border border-outline-variant rounded-full rotate-12 opacity-70"></div>
+<div class="absolute inset-5 border border-dashed border-outline rounded-full -rotate-6"></div>
+<div class="w-10 h-10 rounded-full bg-inverse-surface flex items-center justify-center shadow-inner">
+<div class="w-3 h-3 rounded-full bg-surface-container-lowest"></div>
+</div>
+<!-- Smaller Orbiting Planet -->
+<div class="absolute top-4 right-6 w-4 h-4 rounded-full bg-secondary"></div>
+<div class="absolute bottom-6 left-8 w-2.5 h-2.5 rounded-full bg-tertiary"></div>
+</div>
+<span class="text-[9px] text-outline font-mono mt-1 tracking-tight">Fig. 1.0 Geometric Orbit Dynamic</span>
+<!-- Annotation bounds indicator -->
+<div class="absolute inset-x-2 bottom-1 border-t border-dashed border-primary/50 pt-0.5 flex justify-between text-[7px] text-primary font-mono">
+<span class="">[α = 1.618]</span>
+<span class="">Active Layer: Pen Stroke</span>
+</div>
+</div>
+<!-- Sample PDF paragraph text -->
+<div class="mt-4 space-y-1.5 opacity-65 text-justify">
+<div class="h-2 bg-surface-dim rounded w-full"></div>
+<div class="h-2 bg-surface-dim rounded w-11/12"></div>
+<div class="h-2 bg-surface-dim rounded w-4/5"></div>
+</div>
+</div>
+</main>
+<!-- 4. Bottom Sheet — "Drawing" Inspector Panel -->
+<section class="w-full bg-surface-container-lowest shadow-[0_-8px_24px_rgba(0,0,0,0.12)] rounded-t-2xl z-20 flex flex-col border-t border-outline-variant">
+<!-- Panel Header Bar -->
+<div class="bg-gradient-to-b from-[#e71610] to-[#bc0003] px-4 pt-2.5 pb-3 rounded-t-2xl flex flex-col shadow-md text-white">
+  <div class="w-10 h-1 bg-white/40 rounded-full mx-auto mb-2"></div>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      
+      <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <h2 class="text-lg font-semibold tracking-tight font-title-lg leading-tight text-white">Drawing</h2>
+          
+        </div>
+        
+      </div>
+    </div>
+    <button class="w-8 h-8 rounded-full flex items-center justify-center text-white bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors shadow-sm" title="Close Panel">
+      <span class="material-symbols-outlined text-[18px]">close</span>
+    </button>
+  </div>
+</div>
+<!-- Stroke Live Dynamic Preview Box -->
+<div class="w-full bg-surface-container-lowest px-4 py-3 border-b border-slate-200 flex items-center justify-center relative bg-gradient-to-b from-white to-surface-container-low/20">
+<div class="w-full h-14 relative flex items-center justify-center">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 340 60">
+<path class="transition-all duration-75" d="M 10 30 Q 90 -2 170 30 T 330 30" fill="none" id="previewSineWave" stroke="#1E88E5" stroke-linecap="round" stroke-opacity="1.00" stroke-width="5"></path>
+</svg>
+</div>
+</div>
+<!-- Settings Rows Form -->
+<div class="divide-y divide-[#E2E8F0] px-4">
+<!-- Row 1: Colour -->
+<div class="py-3 flex items-center justify-between cursor-pointer hover:bg-surface-container-low/40 px-1 rounded transition-colors group" id="colourRow">
+<span class="text-sm font-normal text-on-surface-variant">Colour</span>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-[#1E88E5] border border-slate-300 shadow-sm transition-transform group-hover:scale-110" id="inspectorColorDot"></div>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Row 2: Fill Colour -->
+<div class="py-3 flex items-center justify-between cursor-pointer hover:bg-surface-container-low/40 px-1 rounded transition-colors group">
+<span class="text-sm font-normal text-on-surface-variant">Fill Colour</span>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full border border-slate-300 checkerboard-pattern shadow-sm"></div>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Row 3: Thickness Slider -->
+<div class="py-3 flex items-center justify-between gap-3 px-1">
+<span class="text-sm font-normal text-on-surface-variant w-20 flex-shrink-0">Thickness</span>
+<div class="flex-1 flex items-center px-1">
+<input class="w-full accent-primary" id="thicknessSlider" max="20" min="1" step="1" type="range" value="5">
+</div>
+<div class="w-12 text-right flex-shrink-0 flex justify-end">
+<span class="text-xs font-semibold text-on-surface border-b-2 border-on-surface pb-0.5 inline-block min-w-[32px] text-center" id="thicknessValueText">5 pt</span>
+</div>
+</div>
+<!-- Row 4: Opacity Slider -->
+<div class="py-3 flex items-center justify-between gap-3 px-1">
+<span class="text-sm font-normal text-on-surface-variant w-20 flex-shrink-0">Opacity</span>
+<div class="flex-1 flex items-center px-1">
+<input class="w-full accent-primary" id="opacitySlider" max="100" min="10" step="1" type="range" value="100">
+</div>
+<div class="w-12 text-right flex-shrink-0 flex justify-end">
+<span class="text-xs font-semibold text-on-surface border-b-2 border-on-surface pb-0.5 inline-block min-w-[38px] text-center" id="opacityValueText">100 %</span>
+</div>
+</div>
+</div>
+<!-- Android Navigation Bar Indicator -->
+<footer class="w-full pt-3 pb-2 flex justify-center items-center bg-surface-container-lowest">
+<div class="w-32 h-1 bg-on-surface/40 rounded-full"></div>
+</footer>
+</section>
+<!-- Interactive Color Palette Picker Popover (Hidden by Default) -->
+<div class="hidden absolute bottom-24 inset-x-4 bg-surface-container-lowest border border-outline-variant p-3.5 rounded-xl shadow-xl z-30 transition-all" id="palettePickerModal">
+<div class="flex justify-between items-center mb-2.5">
+<span class="text-xs font-semibold text-on-surface">Select Stroke Color</span>
+<button class="text-outline hover:text-on-surface" id="closePaletteBtn">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-6 gap-2">
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#1E88E5] ring-2 ring-offset-2 ring-primary transition-transform active:scale-95" data-color="#1E88E5"></button>
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#2E9B68] transition-transform active:scale-95" data-color="#2E9B68"></button>
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#E53935] transition-transform active:scale-95" data-color="#E53935"></button>
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#FB8C00] transition-transform active:scale-95" data-color="#FB8C00"></button>
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#8E24AA] transition-transform active:scale-95" data-color="#8E24AA"></button>
+<button class="color-choice-btn w-8 h-8 rounded-full bg-[#212121] transition-transform active:scale-95" data-color="#212121"></button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    const thicknessSlider = document.getElementById('thicknessSlider');
+    const opacitySlider = document.getElementById('opacitySlider');
+    const thicknessValueText = document.getElementById('thicknessValueText');
+    const opacityValueText = document.getElementById('opacityValueText');
+    const previewSineWave = document.getElementById('previewSineWave');
+    const pageAnnotationCurve = document.getElementById('pageAnnotationCurve');
+    const inspectorColorDot = document.getElementById('inspectorColorDot');
+    const topColorIndicatorInner = document.getElementById('topColorIndicatorInner');
+    const colourRow = document.getElementById('colourRow');
+    const palettePickerModal = document.getElementById('palettePickerModal');
+    const closePaletteBtn = document.getElementById('closePaletteBtn');
+    const colorChoiceBtns = document.querySelectorAll('.color-choice-btn');
+
+    let currentColor = '#1E88E5';
+
+    function updatePreview() {
+      const thickness = thicknessSlider.value;
+      const opacityPercent = opacitySlider.value;
+      const opacityFraction = (opacityPercent / 100).toFixed(2);
+
+      // Update text indicators
+      thicknessValueText.textContent = `${thickness} pt`;
+      opacityValueText.textContent = `${opacityPercent} %`;
+
+      // Update Live Sine Wave Preview in Bottom Sheet
+      previewSineWave.setAttribute('stroke', currentColor);
+      previewSineWave.setAttribute('stroke-width', thickness);
+      previewSineWave.setAttribute('stroke-opacity', opacityFraction);
+
+      // Update On-Page Rendered Stroke
+      pageAnnotationCurve.setAttribute('stroke', currentColor);
+      pageAnnotationCurve.setAttribute('stroke-width', thickness);
+      pageAnnotationCurve.setAttribute('stroke-opacity', opacityFraction);
+    }
+
+    thicknessSlider.addEventListener('input', updatePreview);
+    opacitySlider.addEventListener('input', updatePreview);
+
+    // Color Palette Toggle
+    colourRow.addEventListener('click', () => {
+      palettePickerModal.classList.toggle('hidden');
+    });
+
+    closePaletteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      palettePickerModal.classList.add('hidden');
+    });
+
+    // Color selection handling
+    colorChoiceBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentColor = btn.getAttribute('data-color');
+        
+        // Update rings
+        colorChoiceBtns.forEach(b => b.classList.remove('ring-2', 'ring-offset-2', 'ring-primary'));
+        btn.classList.add('ring-2', 'ring-offset-2', 'ring-primary');
+
+        // Update indicators
+        inspectorColorDot.style.backgroundColor = currentColor;
+        topColorIndicatorInner.style.backgroundColor = currentColor;
+
+        updatePreview();
+        palettePickerModal.classList.add('hidden');
+      });
+    });
+
+    // Initialize state
+    updatePreview();
+  </script>
+
+
+</body></html>

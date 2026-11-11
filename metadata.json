@@ -1,0 +1,10 @@
+{
+  "name": "PDF Z Scanner",
+  "description": "High-precision PDF scanner, viewer, annotator, and OCR text editor built with Android PdfRenderer, PDFBox, and ML Kit.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html><html class="" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>iLovePDF Mobile UI</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" class="">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {theme: {extend: {colors: {"brand-red": "#E5322D", "pill-pink": "#FCD5CE", "banner-dark": "#212228", "gold-btn": "#FFB703", "tertiary-fixed": "#d8e2ff", error: "#ba1a1a", "secondary-fixed": "#ffdad5", secondary: "#af2f23", "primary-fixed-dim": "#ffb4a9", "inverse-surface": "#412b28", "tertiary-container": "#006de6", background: "#fff8f6", "on-primary-container": "#fff5f4", "on-secondary-fixed-variant": "#8d150d", "on-surface-variant": "#5e3f3a", "on-tertiary-fixed": "#001a41", "surface-container-highest": "#fedad5", "on-primary": "#ffffff", "inverse-primary": "#ffb4a9", "primary-container": "#e2110d", "on-tertiary": "#ffffff", "surface-bright": "#fff8f6", "error-container": "#ffdad6", tertiary: "#0055b7", "surface-container-high": "#ffe2dd", "on-tertiary-container": "#f7f7ff", "on-background": "#291714", "on-primary-fixed": "#410000", "surface-container": "#ffe9e6", "secondary-container": "#fe6855", "on-secondary-container": "#690001", "surface-container-low": "#fff0ee", "surface-dim": "#f5d2cd", "on-error": "#ffffff", surface: "#fff8f6", "on-secondary-fixed": "#410000", "tertiary-fixed-dim": "#adc6ff", "primary-fixed": "#ffdad5", "surface-variant": "#fedad5", "secondary-fixed-dim": "#ffb4a9", "on-tertiary-fixed-variant": "#004494", outline: "#936e69", "on-error-container": "#93000a", "on-secondary": "#ffffff", "surface-tint": "#c00003", "inverse-on-surface": "#ffedea", "on-surface": "#291714", primary: "#b60003", "surface-container-lowest": "#ffffff", "outline-variant": "#e8bcb6", "on-primary-fixed-variant": "#930002"}, fontFamily: {sans: ["-apple-system", "BlinkMacSystemFont", "\"Segoe UI\"", "Roboto", "Helvetica", "Arial", "sans-serif"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}}
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="scrollbar-and-glow">
+    /* Hide horizontal scrollbars across browsers for clean native app feel */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Ambient neon line glow for promotional card */
+    .neon-glow-red {
+      filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.65));
+    }
+  </style>
+<!-- END: Custom Styles -->
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F8F9FA] flex justify-center items-center min-h-screen text-slate-800 antialiased font-sans select-none">
+<!-- BEGIN: Mobile Device Frame -->
+<main class="w-full max-w-[420px] h-[884px] max-h-[890px] flex flex-col justify-between overflow-hidden shadow-2xl relative bg-[#F8F9FA]">
+<!-- BEGIN: Decorative Background Blobs -->
+<!-- END: Decorative Background Blobs -->
+<!-- BEGIN: Scrollable Content Container -->
+<div class="flex-1 overflow-y-auto no-scrollbar relative z-10 flex flex-col"><div class="absolute top-28 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-40 pointer-events-none z-0"></div>
+<!-- BEGIN: System Status Bar -->
+<div class="w-full pt-3 px-6 pb-2 flex justify-between items-center text-xs font-semibold tracking-normal text-slate-700 select-none">
+<div class="flex items-center space-x-1.5">
+<!-- Signal Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+<path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.23C2.89 16.48 2 14.34 2 12c0-5.52 4.48-10 10-10s10 4.48 10 10c0 2.34-.89 4.48-2.35 6.23l-.62-.62C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm0 4c-2.76 0-5 2.24-5 5 0 1.25.46 2.39 1.22 3.28l.71-.71C8.36 13.91 8 13 8 12c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1-.36 1.91-.93 2.57l.71.71C16.54 14.39 17 13.25 17 12c0-2.76-2.24-5-5-5zm0 4c-.55 0-1 .45-1 1 0 .28.11.53.29.71l.71.71.71-.71c.18-.18.29-.43.29-.71 0-.55-.45-1-1-1z"></path>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+<path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.74 0 7.15 1.44 9.73 3.8L12 19.34 2.27 11.3C4.85 8.94 8.26 7.5 12 7.5z"></path>
+</svg>
+<span class="text-[11px] font-medium ml-0.5">17%</span>
+</div>
+<!-- Battery & Time -->
+<div class="flex items-center space-x-1.5">
+<svg class="w-4 h-4 fill-current rotate-90" viewBox="0 0 24 24">
+<path d="M17 5v14c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2zm-2 0H9v14h6V5zm-2-4h-2v1h2V1z"></path>
+</svg>
+<span class="font-bold text-[13px] tracking-tight">17:39</span>
+</div>
+</div>
+<!-- END: System Status Bar -->
+<!-- BEGIN: App Header -->
+<header class="px-5 pt-3 pb-4 flex justify-between items-center" data-purpose="app-bar">
+<!-- Logo Brand: I [Heart] PDF -->
+<div class="flex items-center space-x-2.5 cursor-pointer"><img alt="PDF Z Scanner Logo" class="w-8 h-8 rounded-lg shadow-sm object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VOD8Mk0Iz37HZ7CL8STVK1jDjqUZDY00XUMrzfLg8H-WkOkwFEkb7oOeTiMl9TbyYI-SHCX7B5iOP5otp23st9WEPtWjIoQt5667_4xlVCQ9INdxEtSoQ54G4kCeoFJv1Wy31w2egOI_e9j5qF8odNwtC7tXVDJJ4ioiuRWguiUM5YX0yAiVuaow31PU-GvPllucGfiL1pOnUrG5LSPnnD_bsF56ZnAYEaMa4SIzo"><div class="flex items-center space-x-1"><span class="text-xl font-black tracking-tight text-slate-900 leading-none">PDF</span><span class="text-xl font-black tracking-tight text-brand-red leading-none">Z</span></div></div>
+<!-- Right Action Icons: Search & Profile Avatar -->
+<div class="flex items-center space-x-3.5">
+<!-- Search Button -->
+<button aria-label="Search files" class="p-1.5 text-slate-800 hover:text-black transition" type="button">
+<svg class="w-7 h-7 stroke-[2.4] stroke-current fill-none" viewBox="0 0 24 24">
+<circle cx="11" cy="11" r="7"></circle>
+<path d="M16.5 16.5L21.5 21.5" stroke-linecap="round"></path>
+</svg>
+</button>
+<!-- Circular User Profile -->
+<button aria-label="User profile" class="w-10 h-10 rounded-full border-2 border-brand-red flex items-center justify-center p-0.5 bg-white shadow-sm overflow-hidden" type="button">
+<div class="w-full h-full bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+<svg class="w-7 h-7 fill-slate-400 translate-y-1" viewBox="0 0 24 24">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+</div>
+</button>
+</div>
+</header>
+<!-- END: App Header -->
+<!-- BEGIN: Section Header & Chips -->
+<section class="px-5 pt-3" data-purpose="recent-files-header"><div class="flex items-center justify-between mb-3"><h1 class="text-2xl font-black text-slate-900 tracking-tight">Recent files</h1></div><div class="flex items-center space-x-2 pb-1 overflow-x-auto no-scrollbar"><button type="button" class="flex items-center space-x-1.5 bg-pill-pink text-slate-900 font-semibold text-xs px-3.5 py-1.5 rounded-full shadow-sm flex-none"><span class="material-symbols-outlined text-[14px]">check</span><span class="">Downloads</span></button><button type="button" class="flex items-center space-x-1 border border-slate-200 bg-white text-slate-700 font-medium text-xs px-3.5 py-1.5 rounded-full hover:bg-slate-50 transition flex-none"><span class="">Opened</span></button></div></section>
+<!-- END: Section Header & Chips -->
+<!-- BEGIN: Horizontal Carousel Cards -->
+<section class="mt-4 pl-5 overflow-x-auto no-scrollbar flex space-x-4 py-2" data-purpose="files-carousel">
+<!-- Card 1: Welcome Guide -->
+<div class="flex-none flex flex-col items-start w-[114px]">
+<div class="w-[114px] h-[154px] rounded-xl shadow-md bg-gradient-to-b from-[#2B2B4E] via-[#544673] to-[#EB5A66] p-2.5 flex flex-col justify-between items-center text-center relative overflow-hidden transition-transform active:scale-95 cursor-pointer"><div class="w-10 h-10 mt-1 rounded-xl shadow-md overflow-hidden flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida/AEtjO1W4ZondB0aqdUdVyhSJDiuoQRRJozx2tMh0hNLGCpyEvcrE0hhKhSvLe_QKnzVUNN9ttTSbviG5N5gv7LCuIXTPNfcoOxfofljKgOKA2JzRF5IbDJQwNxxzgbwGM7WkErcP_mYcvnLClL67Sa4j6UFIEWvidsU5MZQDXDtqHN26xcSZUDZBgBv5Jn5xHzMLHu1XjE8BYGeot7EcvYelrB5-dXn9fa2tKKMYiMGqeF9I" alt="Brand Logo" class="w-full h-full object-contain"></div>
+<!-- White PDF logo badge -->
+
+<!-- Guide Subtitle -->
+<div class="mb-4">
+<div class="text-white font-bold text-[11px] leading-tight drop-shadow-sm">Welcome Guide</div>
+<div class="text-[6.5px] text-pink-100 font-medium tracking-tight mt-0.5">PDF tools for productive people</div>
+</div>
+<!-- Sub-footer URL -->
+<span class="text-[5.5px] text-white/70 absolute bottom-1.5">www.ilovepdf.com</span>
+</div>
+<!-- Truncated Name -->
+<span class="text-sm font-semibold text-slate-800 mt-2.5 truncate w-full tracking-tight">User g...e.pdf</span>
+</div>
+<!-- Card 2: Fractal Book Scanned Page Preview -->
+<div class="flex-none flex flex-col items-start w-[114px]">
+<div class="w-[114px] h-[154px] rounded-xl shadow-md bg-white border border-slate-100 p-1 flex justify-center items-center overflow-hidden transition-transform active:scale-95 cursor-pointer">
+<!-- Book layout simulation -->
+<div class="w-full h-full flex bg-slate-50 border border-slate-200 rounded">
+<!-- Left scanned page with spiral fractal -->
+<div class="w-1/2 h-full bg-[#111] p-1 flex flex-col items-center justify-center border-r border-slate-300">
+<svg class="w-9 h-11 text-slate-400 stroke-current stroke-1 fill-none opacity-80" viewBox="0 0 100 100">
+<path d="M50 50 A 10 10 0 0 1 60 50 A 20 20 0 0 1 40 50 A 30 30 0 0 1 70 50 A 40 40 0 0 1 30 50"></path>
+<circle cx="50" cy="50" fill="white" r="4"></circle>
+</svg>
+</div>
+<!-- Right scanned page with text -->
+<div class="w-1/2 h-full bg-white p-1 flex flex-col justify-start items-center text-center">
+<div class="text-[5px] font-extrabold text-slate-800 tracking-tighter mt-1 leading-[7px]">FRACTAL TRADING</div>
+<div class="w-full space-y-0.5 mt-2 px-0.5">
+<div class="h-[1.5px] bg-slate-200 rounded w-full"></div>
+<div class="h-[1.5px] bg-slate-200 rounded w-4/5 mx-auto"></div>
+<div class="h-[1.5px] bg-slate-200 rounded w-full"></div>
+</div>
+<span class="text-[4px] text-slate-400 mt-auto mb-1">Soul Esprit</span>
+</div>
+</div>
+</div>
+<!-- Truncated Name -->
+<span class="text-sm font-semibold text-slate-800 mt-2.5 truncate w-full tracking-tight">fractal...2).pdf</span>
+</div>
+<!-- Card 3: Generic PDF File Preview -->
+<div class="flex-none flex flex-col items-start w-[114px]">
+<div class="w-[114px] h-[154px] rounded-xl shadow-md bg-white border border-slate-100 p-2.5 flex flex-col items-center justify-center transition-transform active:scale-95 cursor-pointer">
+<!-- Red PDF Tag -->
+<div class="bg-brand-red text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wide uppercase mb-1.5">
+              PDF
+            </div>
+<!-- Heart & document mock icon -->
+<div class="flex flex-col items-center mt-1">
+
+<div class="w-7 h-[2px] bg-brand-red rounded mt-1.5"></div>
+<div class="w-7 h-[2px] bg-brand-red rounded mt-1"></div>
+<div class="w-5 h-[2px] bg-brand-red rounded mt-1"></div>
+</div>
+</div>
+<!-- Truncated Name -->
+<span class="text-sm font-semibold text-slate-800 mt-2.5 truncate w-full tracking-tight">fractal...1).pdf</span>
+</div>
+<!-- Card 4: Partial peek card for carousel affordance -->
+<div class="flex-none flex flex-col items-start w-7 pr-3 opacity-40">
+<div class="w-7 h-[154px] rounded-l-xl bg-slate-900"></div>
+<span class="text-sm font-semibold text-slate-800 mt-2.5 truncate w-full">s...</span>
+</div>
+</section>
+<!-- END: Horizontal Carousel Cards -->
+<!-- BEGIN: Premium Banner Section -->
+<section class="px-4 mt-6 mb-4" data-purpose="promotional-banner"><div class="w-full bg-[#0a0a0c] border border-amber-500/30 rounded-2xl py-5 px-4 text-center relative overflow-hidden shadow-xl flex flex-col items-center justify-center"><div class="absolute inset-0 rounded-2xl border border-amber-400/20 pointer-events-none"></div><div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 pointer-events-none"></div><svg class="absolute left-1 top-1/2 -translate-y-1/2 w-8 h-20 stroke-amber-400 fill-none stroke-[2] pointer-events-none opacity-90" style="filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.7));" viewBox="0 0 24 60"><path d="M2 8 L18 30 L2 52" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg class="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-20 stroke-amber-400 fill-none stroke-[2] pointer-events-none opacity-90" style="filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.7));" viewBox="0 0 24 60"><path d="M22 8 L6 30 L22 52" stroke-linecap="round" stroke-linejoin="round"></path></svg><h2 class="text-white text-xl font-extrabold tracking-tight leading-tight z-10 drop-shadow-sm px-6">Save Time, Achieve More with Premium</h2><button class="mt-3.5 bg-gradient-to-r from-[#FFD700] to-[#FFA000] hover:opacity-95 active:scale-95 text-slate-950 font-black text-xs px-6 py-2.5 rounded-lg shadow-lg transition duration-150 z-10" style="box-shadow: rgba(255, 193, 7, 0.45) 0px 0px 15px;" type="button">Start free trial</button></div></section>
+<!-- END: Premium Banner Section -->
+</div>
+<!-- END: Scrollable Content Container -->
+<!-- BEGIN: Material 3 Bottom Navigation Bar -->
+<nav aria-label="Bottom Navigation" class="w-full bg-white border-t border-slate-100 px-3 py-2 flex justify-between items-center z-20" data-purpose="bottom-navigation">
+<!-- Nav Item 1: Home (Active state with soft pink pill background) -->
+<button class="flex flex-col items-center flex-1 cursor-pointer focus:outline-none" type="button">
+<div class="bg-pill-pink w-16 h-8 rounded-full flex items-center justify-center mb-1 transition">
+<!-- Solid Home Icon -->
+<svg class="w-5 h-5 fill-slate-900" viewBox="0 0 24 24">
+<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+</svg>
+</div>
+<span class="text-[11px] font-bold text-slate-900">Home</span>
+</button>
+<!-- Nav Item 2: Files -->
+<button class="flex flex-col items-center flex-1 cursor-pointer text-slate-600 hover:text-slate-900 transition focus:outline-none" type="button">
+<div class="h-8 flex items-center justify-center mb-1">
+<!-- Folder Icon -->
+<svg class="w-6 h-6 stroke-[2] stroke-current fill-none" viewBox="0 0 24 24">
+<path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[11px] font-medium">Files</span>
+</button>
+<!-- Nav Item 3: Tools -->
+<button class="flex flex-col items-center flex-1 cursor-pointer text-slate-600 hover:text-slate-900 transition focus:outline-none" type="button">
+<div class="h-8 flex items-center justify-center mb-1"><svg class="w-6 h-6 stroke-[2] stroke-current fill-none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path><path stroke-linecap="round" stroke-linejoin="round" d="m3 21 6.5-6.5"></path></svg></div>
+<span class="text-[11px] font-medium">Tools</span>
+</button>
+<!-- Nav Item 4: Scanner -->
+<button class="flex flex-col items-center flex-1 cursor-pointer text-slate-600 hover:text-slate-900 transition focus:outline-none" type="button">
+<div class="h-8 flex items-center justify-center mb-1">
+<!-- Scanner / Viewfinder Crop Icon -->
+<svg class="w-6 h-6 stroke-[2] stroke-current fill-none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h3"></path><path d="M20 7V4h-3"></path><path d="M4 17v3h3"></path><path d="M20 17v3h-3"></path><circle cx="12" cy="12" r="3"></circle><path d="M8 12h.01"></path><path d="M16 12h.01"></path></svg>
+</div>
+<span class="text-[11px] font-medium">Scanner</span>
+</button>
+<!-- Nav Item 5: Settings -->
+<button class="flex flex-col items-center flex-1 cursor-pointer text-slate-600 hover:text-slate-900 transition focus:outline-none" type="button">
+<div class="h-8 flex items-center justify-center mb-1">
+<!-- Gear Icon -->
+<svg class="w-6 h-6 stroke-[2] stroke-current fill-none" viewBox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+</div>
+<span class="text-[11px] font-medium">Settings</span>
+</button>
+</nav>
+<!-- END: Material 3 Bottom Navigation Bar -->
+</main>
+<!-- END: Mobile Device Frame -->
+
+
+
+
+</body></html>
